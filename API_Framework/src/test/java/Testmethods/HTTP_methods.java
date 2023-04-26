@@ -15,7 +15,7 @@ public HTTP_methods(Properties pr)
 {
 	this.pr=pr;
 }
-public void postrequest(String urikey, String bodydata)
+public Response postrequest(String urikey, String bodydata)
 {
 	String urivalue= pr.getProperty(urikey);
 	
@@ -26,6 +26,7 @@ public void postrequest(String urikey, String bodydata)
 	.when()
 	.post(urivalue);
 	System.out.println("Status Code  of Post is --" +res.statusCode());
+	return res;
 }
 public void getallrequest(String urikey)
 {
@@ -39,16 +40,31 @@ public void getallrequest(String urikey)
 	System.out.println("Response data is");
 	System.out.println(res.asString());
 }
-public void getpartrequest(String urikey)
+public void getpartrequest(String urikey, String idval)
 {
-	String urivalue= pr.getProperty(urikey);
+	String urivalue= pr.getProperty(urikey+"/"+idval);
 	Response res=
 			given()
 			.contentType(ContentType.JSON)
 			.when()
 			.get(urivalue);
-	System.out.println("Status code is--" +res.statusCode());
-	System.out.println("Response data is");
+	System.out.println("Status code of Get Particular is--" +res.statusCode());
+	System.out.println("Response data of Get Particular is");
 	System.out.println(res.asString());
 }
+public void putrequest(String urikey, String bodydata, String idval)
+{
+	String urivalue= pr.getProperty(urikey)+"/"+idval;
+	
+	Response res=
+	given()
+	.contentType(ContentType.JSON)
+	.body(bodydata)
+	.when()
+	.put(urivalue);
+	System.out.println("Status Code  of PUT is --" +res.statusCode());
+	System.out.println("After update response data is");
+	System.out.println(res.asString());
+}
+
 }

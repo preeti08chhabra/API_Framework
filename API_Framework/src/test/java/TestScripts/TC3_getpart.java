@@ -12,6 +12,6 @@ public void getpart() throws IOException
 {
 	Properties pr= properties_Filehandle.loadproperties("../API_Framework/URI.properties");
 	HTTP_methods http= new HTTP_methods(pr);
-	http.getpartrequest("JAVAFolks");
+	http.getpartrequest("JAVAfolks",TC1_postrequest.returnidval);
 }
 }
