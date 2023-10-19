@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Properties;
 
 import org.json.HTTP;
+import org.test.responsevalidation.validateResponse;
 
 import Testmethods.HTTP_methods;
 import utilities_package.properties_Filehandle;
@@ -15,6 +16,7 @@ public class TC2_getall
 		Properties pr= properties_Filehandle.loadproperties("../API_Framework/URI.properties");
 				HTTP_methods http = new HTTP_methods(pr);
 				http.getallrequest("JAVAfolks");
+				
 	}
 }
 

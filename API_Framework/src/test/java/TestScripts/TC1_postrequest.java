@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.Scanner;
 
+import org.test.responsevalidation.validateResponse;
 import org.testing.Helper.jsonparsingusingjsonpath;
+import org.testng.annotations.Test;
 
 import Testmethods.HTTP_methods;
 import io.restassured.response.Response;
@@ -17,7 +19,8 @@ public class TC1_postrequest
 {
 	static String returnidval;
 	//static String returnfname;
-	public void tc_post() throws IOException
+	@Test
+		public void tc_post() throws IOException
 {
 	
 	Properties pr= properties_Filehandle.loadproperties("../API_Framework/URI.properties");
@@ -36,6 +39,7 @@ public class TC1_postrequest
 		Response res=http.postrequest("JAVAfolks", postbody);
 		returnidval=jsonparsingusingjsonpath.jsonparse(res, "id");
 		//returnfname=jsonparsingusingjsonpath.jsonparse(res, "f_name");
-		
+		validateResponse.validate_StatusCode(201, res);
+		//validateResponse.validate_ResponseData("Preeti", res, First_name);
 }
 }

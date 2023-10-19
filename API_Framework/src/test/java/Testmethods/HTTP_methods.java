@@ -28,7 +28,7 @@ public Response postrequest(String urikey, String bodydata)
 	System.out.println("Status Code  of Post is --" +res.statusCode());
 	return res;
 }
-public void getallrequest(String urikey)
+public Response getallrequest(String urikey)
 {
 	String urivalue= pr.getProperty(urikey);
 	Response res=
@@ -39,8 +39,9 @@ public void getallrequest(String urikey)
 	System.out.println("Status code of Get is--" +res.statusCode());
 	System.out.println("Response data is");
 	System.out.println(res.asString());
+	return res;
 }
-public void getpartrequest(String urikey, String idval)
+public Response getpartrequest(String urikey, String idval)
 {
 	String urivalue= pr.getProperty(urikey+"/"+idval);
 	Response res=
@@ -51,8 +52,9 @@ public void getpartrequest(String urikey, String idval)
 	System.out.println("Status code of Get Particular is--" +res.statusCode());
 	System.out.println("Response data of Get Particular is");
 	System.out.println(res.asString());
+	return res;
 }
-public void putrequest(String urikey, String bodydata, String idval)
+public Response putrequest(String urikey, String bodydata, String idval)
 {
 	String urivalue= pr.getProperty(urikey)+"/"+idval;
 	
@@ -65,6 +67,29 @@ public void putrequest(String urikey, String bodydata, String idval)
 	System.out.println("Status Code  of PUT is --" +res.statusCode());
 	System.out.println("After update response data is");
 	System.out.println(res.asString());
+	return res;
 }
-
+public Response delrequest(String urikey, String idval)
+{
+	String urivalue= pr.getProperty(urikey+"/"+idval);
+	Response res=
+			given()
+			.contentType(ContentType.JSON)
+			.when()
+			.delete(urivalue);
+	System.out.println("Status code of Deelete is--" +res.statusCode());
+	return res;
+}
+/*public void getalldummy(String urikey)
+{
+	String urivalue= pr.getProperty(urikey);
+	Response res=
+			given()
+			.contentType(ContentType.JSON)
+			.when()
+			.get(urivalue);
+	System.out.println("Status code of Get is--" +res.statusCode());
+	System.out.println("Response data is");
+	System.out.println(res.asString());
+}*/
 }

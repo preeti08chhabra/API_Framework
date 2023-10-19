@@ -20,5 +20,21 @@ public class json_filehandle
 		JSONObject jo= new JSONObject(js);
 		return jo.toString();
 	}
+	public static int countURI(String filepath) throws FileNotFoundException
+	{
+		File f= new File(filepath);
+		FileReader fr = new FileReader(f);
+		JSONTokener js = new JSONTokener(fr);
+		JSONObject jo= new JSONObject(js);
+		return jo.length();
+	}
+	public static String fetchURIvalue(String urikeyname, String filepath) throws FileNotFoundException
+	{
+		File f= new File(filepath);
+		FileReader fr = new FileReader(f);
+		JSONTokener js = new JSONTokener(fr);
+		JSONObject jo= new JSONObject(js);
+		return jo.getString(urikeyname);
+	}
 
 }
